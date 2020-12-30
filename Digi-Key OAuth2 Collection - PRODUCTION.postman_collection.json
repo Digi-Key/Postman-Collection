@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "1665cb6f-3d7e-4734-bcbd-8f13e36c5b26",
+		"name": "Digi-Key OAuth2 Collection - PRODUCTION",
+		"description": "Digi-Key API Solutions OAuth Postman Collection for v3 Production APIs (api.digikey.com)\r\n\r\nDK API Solutions OAuth documentation: https://developer.digikey.com/documentation/oauth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Access Token - PRODUCTION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b789c6ad-ef6a-4617-8d05-6fb0f4ba7bcb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "<<input client_id>>",
+							"description": "application client id",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<<input client_secret>>",
+							"description": "application client secret",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "<<input authorization code>>",
+							"description": "authorization code",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"description": "grant_type is \"authorization_code\", no change here",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "<<input redirect_uri>>",
+							"description": "application redirect_uri, matches what was registered when application created.",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "https://api.digikey.com/v1/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"v1",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "https://developer.digikey.com/documentation/oauth#production-application"
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token - PRODUCTION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "daea2b11-868d-4d55-8d16-cbdbfe44d9ed",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "<<input client_id>>",
+							"description": "application client id",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<<input client_secret>>",
+							"description": "application client secret",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "<<input refresh_token>>",
+							"description": "refresh_token to submit from initial set of credentials",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"description": "grant_type is \"refresh_token\", no change here",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "https://api.digikey.com/v1/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"v1",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "https://developer.digikey.com/documentation/oauth#production-application"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "12a1e603-4400-4b12-8ad3-d1bbe50ee256",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "597b5805-14cb-4010-bad2-983ecc88f66a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

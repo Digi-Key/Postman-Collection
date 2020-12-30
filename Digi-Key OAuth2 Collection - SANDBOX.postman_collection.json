@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "9dcc5fef-b2ba-4352-9ee1-79cb6de8856b",
+		"name": "Digi-Key OAuth2 Collection - SANDBOX",
+		"description": "Digi-Key API Solutions OAuth Postman Collection for v3 Sandbox APIs (sandbox-api.digikey.com)\r\n\r\nDK API Solutions OAuth documentation: https://developer.digikey.com/documentation/oauth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Access Token - SANDBOX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c141a96a-0533-42a6-ad8e-4454114efd8f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "<<input client_id>>",
+							"description": "application client id",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<<input client_secret>>",
+							"description": "application client secret",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "<<input authorization code>>",
+							"description": "authorization code",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"description": "grant_type is \"authorization_code\", no change here",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "<<input redirect_uri>>",
+							"description": "application redirect_uri, matches what was registered when application created.",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "https://sandbox-api.digikey.com/v1/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"sandbox-api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"v1",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "https://developer.digikey.com/documentation/oauth#sandbox-application"
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token - SANDBOX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3117c7da-ff5a-418c-acda-d103dcdc2615",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "<<input client_id>>",
+							"description": "application client id",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<<input client_secret>>",
+							"description": "application client secret",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "<<input refresh_token>>",
+							"description": "refresh_token to submit from initial set of credentials",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"description": "grant_type is \"refresh_token\", no change here",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "https://sandbox-api.digikey.com/v1/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"sandbox-api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"v1",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "https://developer.digikey.com/documentation/oauth#sandbox-application"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "52497899-8a98-40e6-a491-76ccf67e51f6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6bf132ab-91ee-4f68-b098-2ce68fd27e42",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
