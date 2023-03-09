@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1665cb6f-3d7e-4734-bcbd-8f13e36c5b26",
+		"_postman_id": "aebb80a4-005a-4d93-96cc-64930219b37c",
 		"name": "Digi-Key OAuth2 Collection - PRODUCTION",
 		"description": "Digi-Key API Solutions OAuth Postman Collection for v3 Production APIs (api.digikey.com)\r\n\r\nDK API Solutions OAuth documentation: https://developer.digikey.com/documentation/oauth",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13792773"
 	},
 	"item": [
 		{
@@ -12,7 +13,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b789c6ad-ef6a-4617-8d05-6fb0f4ba7bcb",
 						"exec": [
 							""
 						],
@@ -22,32 +22,25 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/x-www-form-urlencoded"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "client_id",
-							"value": "<<input client_id>>",
+							"value": "{{ClientID}}",
 							"description": "application client id",
 							"type": "text"
 						},
 						{
 							"key": "client_secret",
-							"value": "<<input client_secret>>",
+							"value": "{{ClientSecret}}",
 							"description": "application client secret",
 							"type": "text"
 						},
 						{
 							"key": "code",
-							"value": "<<input authorization code>>",
+							"value": "{{AuthorizationCode}}",
 							"description": "authorization code",
 							"type": "text"
 						},
@@ -59,14 +52,11 @@
 						},
 						{
 							"key": "redirect_uri",
-							"value": "<<input redirect_uri>>",
+							"value": "{{CallbackURL}}",
 							"description": "application redirect_uri, matches what was registered when application created.",
 							"type": "text"
 						}
-					],
-					"options": {
-						"urlencoded": {}
-					}
+					]
 				},
 				"url": {
 					"raw": "https://api.digikey.com/v1/oauth2/token",
@@ -92,7 +82,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "daea2b11-868d-4d55-8d16-cbdbfe44d9ed",
 						"exec": [
 							""
 						],
@@ -114,19 +103,19 @@
 					"urlencoded": [
 						{
 							"key": "client_id",
-							"value": "<<input client_id>>",
+							"value": "{{ClientID}}",
 							"description": "application client id",
 							"type": "text"
 						},
 						{
 							"key": "client_secret",
-							"value": "<<input client_secret>>",
+							"value": "{{ClientSecret}}",
 							"description": "application client secret",
 							"type": "text"
 						},
 						{
 							"key": "refresh_token",
-							"value": "<<input refresh_token>>",
+							"value": "{{RefreshToken}}",
 							"description": "refresh_token to submit from initial set of credentials",
 							"type": "text"
 						},
@@ -136,10 +125,7 @@
 							"description": "grant_type is \"refresh_token\", no change here",
 							"type": "text"
 						}
-					],
-					"options": {
-						"urlencoded": {}
-					}
+					]
 				},
 				"url": {
 					"raw": "https://api.digikey.com/v1/oauth2/token",
@@ -158,13 +144,139 @@
 				"description": "https://developer.digikey.com/documentation/oauth#production-application"
 			},
 			"response": []
+		},
+		{
+			"name": "Authorization Code - PRODUCTION",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.digikey.com/v1/oauth2/authorize?response_type=code&client_id={{ClientID}}&redirect_uri={{CallbackURL}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"v1",
+						"oauth2",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "client_id",
+							"value": "{{ClientID}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{CallbackURL}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Part Search - PRODUCTION",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{CallbackURL}}",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{ClientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{ClientID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://api.digikey.com/v1/oauth2/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://api.digikey.com/v1/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Auth Code",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-DIGIKEY-Client-Id",
+						"value": "{{ClientID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api.digikey.com/Search/v3/Products/CGJ3E2C0G2A102J080AA",
+					"protocol": "https",
+					"host": [
+						"api",
+						"digikey",
+						"com"
+					],
+					"path": [
+						"Search",
+						"v3",
+						"Products",
+						"CGJ3E2C0G2A102J080AA"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "12a1e603-4400-4b12-8ad3-d1bbe50ee256",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -174,13 +286,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "597b5805-14cb-4010-bad2-983ecc88f66a",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
